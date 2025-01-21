@@ -10,14 +10,14 @@ async function removeVideos() {
             // Задержка перед удалением, ждем меню
             await new Promise(resolve => setTimeout(resolve, 50));
 
-            // Клик по кнопке удаления
-            const deleteButton = document.querySelector("#items > ytd-menu-service-item-renderer:nth-child(3) > tp-yt-paper-item");
+            // Поиск кнопки удаления по структуре дочерних элементов
+            const deleteButton = document.querySelector("#items > ytd-menu-service-item-renderer yt-formatted-string > span:nth-child(2)");
             if (deleteButton) {
                 deleteButton.click();
                 console.log("Видео было удалено");
 
                 // Задержка перед следующим циклом
-                await new Promise(resolve => setTimeout(resolve, 50));
+                await new Promise(resolve => setTimeout(resolve, 300));
             } else {
                 console.log("Не найдена кнопка удаления. Повторная попытка через 500 мс...");
                 // Задержка перед повторной попыткой
