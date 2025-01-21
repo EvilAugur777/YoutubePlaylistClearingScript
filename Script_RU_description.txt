@@ -17,6 +17,7 @@ async function removeVideos() {
                 console.log("Видео было удалено");
 
                 // Задержка перед следующим циклом
+                //Как оказалось, YouTube не может обрабатывать меньше 300
                 await new Promise(resolve => setTimeout(resolve, 300));
             } else {
                 console.log("Не найдена кнопка удаления. Повторная попытка через 500 мс...");
