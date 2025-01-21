@@ -1,4 +1,5 @@
 # YoutubePlaylistClearingScript
+https://youtu.be/VW71ek1WjF4?si=Dk0SXIB0rFcm5EKN
 
 RU:  
 Скрипт разработан для очистки плейлиста "Смотреть позже", но работает в любом, если вам это надо.
