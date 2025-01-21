@@ -1,0 +1,35 @@
+async function removeVideos() {
+    while (true) {
+        // Click on the three dots
+        const dotsButton = document.querySelector("#page-manager > ytd-browse.style-scope.ytd-page-manager > ytd-two-column-browse-results-renderer ytd-section-list-renderer #contents ytd-playlist-video-renderer:nth-child(1) > div:nth-child(3) > ytd-menu-renderer > #button");
+        
+        if (dotsButton) {
+            dotsButton.click();
+            console.log("Clicked on the three dots");
+
+            // Delay before deletion, waiting for the menu
+            await new Promise(resolve => setTimeout(resolve, 50));
+
+            // Click on the delete button
+            const deleteButton = document.querySelector("#items > ytd-menu-service-item-renderer:nth-child(3) > tp-yt-paper-item");
+            if (deleteButton) {
+                deleteButton.click();
+                console.log("Video has been deleted");
+
+                // Delay before the next cycle
+                await new Promise(resolve => setTimeout(resolve, 50));
+            } else {
+                console.log("Delete button not found. Retrying in 500 ms...");
+                // Delay before retrying
+                await new Promise(resolve => setTimeout(resolve, 500));
+            }
+        } else {
+            console.log("Three dots not found. Retrying in 500 ms...");
+            // Delay before retrying
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+    }
+}
+
+// Start the script
+removeVideos();
