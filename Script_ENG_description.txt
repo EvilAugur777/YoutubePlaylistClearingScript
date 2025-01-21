@@ -1,31 +1,30 @@
 async function removeVideos() {
     while (true) {
-        // Click on the three dots
+        // Click on the three dots button
         const dotsButton = document.querySelector("#page-manager > ytd-browse.style-scope.ytd-page-manager > ytd-two-column-browse-results-renderer ytd-section-list-renderer #contents ytd-playlist-video-renderer:nth-child(1) > div:nth-child(3) > ytd-menu-renderer > #button");
         
         if (dotsButton) {
             dotsButton.click();
             console.log("Clicked on the three dots");
 
-            // Delay before deletion, waiting for the menu
+            // Delay before trying to remove, waiting for the menu to appear
             await new Promise(resolve => setTimeout(resolve, 50));
 
-            // Click on the delete button
-            const deleteButton = document.querySelector("#items > ytd-menu-service-item-renderer:nth-child(3) > tp-yt-paper-item");
+            // Search for the delete button using the structure of child elements
+            const deleteButton = document.querySelector("#items > ytd-menu-service-item-renderer yt-formatted-string > span:nth-child(2)");
             if (deleteButton) {
                 deleteButton.click();
-                console.log("Video has been deleted");
+                console.log("Video has been removed");
 
-                // Delay before the next cycle
-                // As it turns out, YouTube can't process less than 300
-                await new Promise(resolve => setTimeout(resolve, 300));
+                // Delay before the next iteration
+                await new Promise(resolve => setTimeout(resolve, 50));
             } else {
                 console.log("Delete button not found. Retrying in 500 ms...");
                 // Delay before retrying
                 await new Promise(resolve => setTimeout(resolve, 500));
             }
         } else {
-            console.log("Three dots not found. Retrying in 500 ms...");
+            console.log("Three dots button not found. Retrying in 500 ms...");
             // Delay before retrying
             await new Promise(resolve => setTimeout(resolve, 500));
         }
