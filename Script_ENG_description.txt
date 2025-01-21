@@ -17,7 +17,8 @@ async function removeVideos() {
                 console.log("Video has been deleted");
 
                 // Delay before the next cycle
-                await new Promise(resolve => setTimeout(resolve, 50));
+                // As it turns out, YouTube can't process less than 300
+                await new Promise(resolve => setTimeout(resolve, 300));
             } else {
                 console.log("Delete button not found. Retrying in 500 ms...");
                 // Delay before retrying
