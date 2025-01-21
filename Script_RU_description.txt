@@ -1,0 +1,35 @@
+async function removeVideos() {
+    while (true) {
+        // Клик по трем точкам
+        const dotsButton = document.querySelector("#page-manager > ytd-browse.style-scope.ytd-page-manager > ytd-two-column-browse-results-renderer ytd-section-list-renderer #contents ytd-playlist-video-renderer:nth-child(1) > div:nth-child(3) > ytd-menu-renderer > #button");
+        
+        if (dotsButton) {
+            dotsButton.click();
+            console.log("Клик по трем точкам");
+
+            // Задержка перед удалением, ждем меню
+            await new Promise(resolve => setTimeout(resolve, 50));
+
+            // Клик по кнопке удаления
+            const deleteButton = document.querySelector("#items > ytd-menu-service-item-renderer:nth-child(3) > tp-yt-paper-item");
+            if (deleteButton) {
+                deleteButton.click();
+                console.log("Видео было удалено");
+
+                // Задержка перед следующим циклом
+                await new Promise(resolve => setTimeout(resolve, 50));
+            } else {
+                console.log("Не найдена кнопка удаления. Повторная попытка через 500 мс...");
+                // Задержка перед повторной попыткой
+                await new Promise(resolve => setTimeout(resolve, 500));
+            }
+        } else {
+            console.log("Не найдены 3 точки. Повторная попытка через 500 мс...");
+            // Задержка перед повторной попыткой
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+    }
+}
+
+// Запуск скрипта
+removeVideos();
